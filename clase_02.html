@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tareas en local</title>
+    <link href="./bootstrap.min.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h1>Lista de tareas</h1>
+      <form id="task-form">
+        <div class="input-group mb-3">
+          <input
+            type="text"
+            class="form-control"
+            id="task-input"
+            placeholder="Nueva tarea"
+          />
+          <button class="btn btn-primary" type="submit">Añadir</button>
+        </div>
+      </form>
+      <ul class="list-group" id="task-list">
+        <!-- Las tareas irán aquí -->
+      </ul>
+    </div>
+    <script>
+    function savetasks(tasks) {
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+    }
+    function loadTasks() {
+      const tasks = localStorage.getItem("tasks");
+      return tasks ? JSON.parse(tasks) : [];
+    }
+    function displaytasks(tasks) {
+      const tasklist = document.getElementById("task-list");
+      tasklist.innerHTML = "";
+      tasks.forEach((task, index) => {
+        const listItem = document.createElement("li");
+        listItem.className =
+        listItem.textContent = task;
+        const deleteButton = document.createElement("button");
+        deleteButton.className = "btn btn-danger";
+        deleteButton.textContent = "Eliminar";
+        
+      });
+    }
+    
+    </script>
+    <script src="./bootstrap.min.js"></script>
+  </body>
+</html>
